@@ -51,7 +51,5 @@ public class contact{
   public String toString(){
     return "Name: " + lastName + ", " + firstName + "\nPhone Number: " + phoneNumber + "\nAddress: " + address;
   }
-
-
 }
 
