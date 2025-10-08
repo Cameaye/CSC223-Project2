@@ -2,19 +2,19 @@ import java.util.LinkedList;
 
 public class Sorter {
 
-    public static void sort(LinkedList<Person> list) {
+    public static void sort(LinkedList<contact> list) {
         if (list.size() <= 1) return;
-        LinkedList<Person> sorted = mergeSort(list);
+        LinkedList<contact> sorted = mergeSort(list);
         list.clear();
         list.addAll(sorted);
     }
 
-    private static LinkedList<Person> mergeSort(LinkedList<Person> list) {
+    private static LinkedList<contact> mergeSort(LinkedList<contact> list) {
         if (list.size() <= 1) return list;
 
         int mid = list.size() / 2;
-        LinkedList<Person> left = new LinkedList<>(list.subList(0, mid));
-        LinkedList<Person> right = new LinkedList<>(list.subList(mid, list.size()));
+        LinkedList<contact> left = new LinkedList<>(list.subList(0, mid));
+        LinkedList<contact> right = new LinkedList<>(list.subList(mid, list.size()));
 
         left = mergeSort(left);
         right = mergeSort(right);
@@ -22,12 +22,12 @@ public class Sorter {
         return merge(left, right);
     }
 
-    private static LinkedList<Person> merge(LinkedList<Person> left, LinkedList<Person> right) {
-        LinkedList<Person> result = new LinkedList<>();
+    private static LinkedList<contact> merge(LinkedList<contact> left, LinkedList<contact> right) {
+        LinkedList<contact> result = new LinkedList<>();
 
         while (!left.isEmpty() && !right.isEmpty()) {
-            Person l = left.peek();
-            Person r = right.peek();
+            contact l = left.peek();
+            contact r = right.peek();
 
             int cmp = l.getLastName().compareToIgnoreCase(r.getLastName());
             if (cmp == 0) {
