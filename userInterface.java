@@ -12,9 +12,9 @@ public class userInterface{
     int userInput;
 
     System.out.println("=== Contact Manager ===");
-    System.out.println("1. Insert a contact \n2. Sort Contacts");
-    System.out.println("3. Modify Contact address \n4. Delete a contact \n5. Search for a contact");
-    System.out.println("6. Display all contacts \n0. Exit");
+    System.out.println("1. Insert a contact");
+    System.out.println("2. Modify Contact address \n3. Delete a contact \n4. Search for a contact");
+    System.out.println("5. Display all contacts \n0. Exit");
     System.out.print("Please enter your choice: ");
     userInput = lineInput.nextInt();
 
@@ -28,7 +28,7 @@ public class userInterface{
           addContact();
           break;
 
-        case 6:
+        case 5:
           printContacts();
           break;
         default:
@@ -38,9 +38,9 @@ public class userInterface{
 
       
       System.out.println("=== Contact Manager ===");
-      System.out.println("1. Insert a contact \n2. Sort Contacts");
-      System.out.println("3. Modify Contact address \n4. Delete a contact \n5. Search for a contact");
-      System.out.println("6. Display all contacts \n0. Exit");
+      System.out.println("1. Insert a contact");
+      System.out.println("2. Modify Contact address \n3. Delete a contact \n4. Search for a contact");
+      System.out.println("5. Display all contacts \n0. Exit");
       System.out.print("Please enter your choice: ");
       userInput = lineInput.nextInt();
     }
