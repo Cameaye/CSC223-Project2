@@ -27,6 +27,10 @@ public class userInterface{
         case 1:
           addContact();
           break;
+
+        case 6:
+          printContacts();
+          break;
         default:
           System.out.println("Invalid choice, please enter a valid option");
           break;
@@ -71,6 +75,16 @@ public class userInterface{
 
       if(userPrompt == 'n' || userPrompt == 'N')  addAnother = false;
 
+    }
+  }
+
+
+  public static void printContacts(){
+
+    for(contact curr: contacts){
+      System.out.println("Contact:");
+      System.out.println(curr.toString());
+      System.out.println();
     }
   }
 }
