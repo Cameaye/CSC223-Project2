@@ -2,48 +2,36 @@ import java.util.LinkedList;
 
 public class Sorter {
 
-    // Public method to call merge sort on LinkedList
-    public static void sortByFirstName(LinkedList<Person> list) {
+    public static void sort(LinkedList<contact> list) {
         if (list.size() <= 1) return;
-        LinkedList<Person> sorted = mergeSort(list, true);
+        LinkedList<contact> sorted = mergeSort(list);
         list.clear();
         list.addAll(sorted);
     }
 
-    public static void sortByLastName(LinkedList<Person> list) {
-        if (list.size() <= 1) return;
-        LinkedList<Person> sorted = mergeSort(list, false);
-        list.clear();
-        list.addAll(sorted);
-    }
-
-    // Merge Sort core
-    private static LinkedList<Person> mergeSort(LinkedList<Person> list, boolean sortByFirst) {
+    private static LinkedList<contact> mergeSort(LinkedList<contact> list) {
         if (list.size() <= 1) return list;
 
         int mid = list.size() / 2;
-        LinkedList<Person> left = new LinkedList<>(list.subList(0, mid));
-        LinkedList<Person> right = new LinkedList<>(list.subList(mid, list.size()));
+        LinkedList<contact> left = new LinkedList<>(list.subList(0, mid));
+        LinkedList<contact> right = new LinkedList<>(list.subList(mid, list.size()));
 
-        left = mergeSort(left, sortByFirst);
-        right = mergeSort(right, sortByFirst);
+        left = mergeSort(left);
+        right = mergeSort(right);
 
-        return merge(left, right, sortByFirst);
+        return merge(left, right);
     }
 
-    // Merge step
-    private static LinkedList<Person> merge(LinkedList<Person> left, LinkedList<Person> right, boolean sortByFirst) {
-        LinkedList<Person> result = new LinkedList<>();
+    private static LinkedList<contact> merge(LinkedList<contact> left, LinkedList<contact> right) {
+        LinkedList<contact> result = new LinkedList<>();
 
         while (!left.isEmpty() && !right.isEmpty()) {
-            Person l = left.peek();
-            Person r = right.peek();
+            contact l = left.peek();
+            contact r = right.peek();
 
-            int cmp;
-            if (sortByFirst) {
+            int cmp = l.getLastName().compareToIgnoreCase(r.getLastName());
+            if (cmp == 0) {
                 cmp = l.getFirstName().compareToIgnoreCase(r.getFirstName());
-            } else {
-                cmp = l.getLastName().compareToIgnoreCase(r.getLastName());
             }
 
             if (cmp <= 0) {
