@@ -1,4 +1,5 @@
 import java.util.LinkedList;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class userInterface{
@@ -31,6 +32,11 @@ public class userInterface{
         case 5:
           printContacts();
           break;
+
+        case 4:
+          contact userRequested = searchForContact();
+          if(userRequested != null) System.out.println(userRequested.toString());
+          break;
         default:
           System.out.println("Invalid choice, please enter a valid option");
           break;
@@ -53,6 +59,7 @@ public class userInterface{
   public static void addContact(){
     boolean addAnother = true;
     while (addAnother){
+      System.out.println("Please press enter to continue...");
       lineInput.nextLine();
       System.out.print("Please Enter the Contacts first Name: ");
       String firstName = lineInput.nextLine();
@@ -86,6 +93,38 @@ public class userInterface{
       System.out.println(curr.toString());
       System.out.println();
     }
+  }
+
+  public static contact searchForContact(){
+    lineInput.nextLine();
+    Iterator<contact> contactsIterator; 
+    contactsIterator = contacts.iterator();
+  
+    System.out.print("Please enter the last name of the contact you would like to search for: ");
+    String desiredLast = lineInput.nextLine();
+
+    System.out.print("Please enter the first name of the contact you would like to search for: ");
+    String desiredFirst = lineInput.nextLine();
+    
+    contact current;
+    while(contactsIterator.hasNext()){
+      current = contactsIterator.next();
+      if (desiredLast.equalsIgnoreCase(current.getLastName())) {
+        if(desiredFirst.equalsIgnoreCase(current.getFirstName())){
+          return current;
+        }
+      }
+    }
+
+   System.out.println("No contact found, would you like to search again? (y/n)");
+   
+   char userPrompt = lineInput.nextLine().charAt(0);
+
+   if(userPrompt == 'n' || userPrompt == 'N'){
+     return null;
+    }
+   else return searchForContact();
+
   }
 }
 
