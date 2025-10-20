@@ -18,6 +18,7 @@ public class userInterface{
     System.out.println("5. Display all Contacts \n0. Exit");
     System.out.print("Please enter your choice: ");
     userInput = lineInput.nextInt();
+    System.out.println("\n\n");
 
     while (userInput != 0){
 
@@ -27,6 +28,9 @@ public class userInterface{
           break;
         case 1:
           addContact();
+          break;
+        case 2:
+          updateAddress();
           break;
         case 3:
           removeContact();
@@ -137,6 +141,24 @@ public class userInterface{
       System.out.println("Contact " + requestedDeletion.getFirstName() + " " + requestedDeletion.getLastName() + " has been deleted!!");
     }
     else System.out.println("Error: No Contacts deleted");
+  }
+
+  public static void updateAddress(){
+    Contact requestedUpdate = searchForContact();
+    int indexOfRequestedUpdate;
+
+    if(requestedUpdate != null){
+      indexOfRequestedUpdate = Contacts.indexOf(requestedUpdate);
+      
+      System.out.print("Please enter the new address for the Contact: ");
+      String newAddr = lineInput.nextLine();
+
+      Contacts.get(indexOfRequestedUpdate).setAddress(newAddr);
+      System.out.println("Contact " + requestedUpdate.getFirstName() + " " + requestedUpdate.getLastName() + " has had its address updated to " + newAddr);
+    }
+    else System.out.println("Error: No Contacts address could be updated");
+
+
   }
 }
 
