@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class userInterface{
 
   static Scanner lineInput = new Scanner(System.in);
-  static LinkedList<contact> contacts = new LinkedList<>();
+  static LinkedList<Contact> Contacts = new LinkedList<>();
   
 
   public static void main(String[] args){
@@ -13,9 +13,9 @@ public class userInterface{
     int userInput;
 
     System.out.println("=== Contact Manager ===");
-    System.out.println("1. Insert a contact");
-    System.out.println("2. Modify Contact address \n3. Delete a contact \n4. Search for a contact");
-    System.out.println("5. Display all contacts \n0. Exit");
+    System.out.println("1. Insert a Contact");
+    System.out.println("2. Modify Contact address \n3. Delete a Contact \n4. Search for a Contact");
+    System.out.println("5. Display all Contacts \n0. Exit");
     System.out.print("Please enter your choice: ");
     userInput = lineInput.nextInt();
 
@@ -34,7 +34,7 @@ public class userInterface{
           break;
 
         case 4:
-          contact userRequested = searchForContact();
+          Contact userRequested = searchForContact();
           if(userRequested != null) System.out.println(userRequested.toString());
           break;
         default:
@@ -44,9 +44,9 @@ public class userInterface{
 
       
       System.out.println("=== Contact Manager ===");
-      System.out.println("1. Insert a contact");
-      System.out.println("2. Modify Contact address \n3. Delete a contact \n4. Search for a contact");
-      System.out.println("5. Display all contacts \n0. Exit");
+      System.out.println("1. Insert a Contact");
+      System.out.println("2. Modify Contact address \n3. Delete a Contact \n4. Search for a Contact");
+      System.out.println("5. Display all Contacts \n0. Exit");
       System.out.print("Please enter your choice: ");
       userInput = lineInput.nextInt();
     }
@@ -67,17 +67,17 @@ public class userInterface{
       System.out.print("Please enter the Contacts last Name: ");
       String lastName = lineInput.nextLine();
 
-      System.out.print("Please enter the contacts phone number: ");
+      System.out.print("Please enter the Contacts phone number: ");
       String phoneNum = lineInput.nextLine();
 
-      System.out.print("Please enter the contacts address: ");
+      System.out.print("Please enter the Contacts address: ");
       String address = lineInput.nextLine();
 
-      contact newContact = new contact(firstName, lastName, phoneNum, address);
-      contacts.add(newContact);
-      Sorter.sort(contacts);
+      Contact newContact = new Contact(firstName, lastName, phoneNum, address);
+      Contacts.add(newContact);
+      Sorter.sort(Contacts);
 
-      System.out.print("Would you like to enter another contact? (Y/n): ");
+      System.out.print("Would you like to enter another Contact? (Y/n): ");
       char userPrompt = lineInput.nextLine().charAt(0);
 
       if(userPrompt == 'n' || userPrompt == 'N')  addAnother = false;
@@ -88,27 +88,27 @@ public class userInterface{
 
   public static void printContacts(){
 
-    for(contact curr: contacts){
+    for(Contact curr: Contacts){
       System.out.println("Contact:");
       System.out.println(curr.toString());
       System.out.println();
     }
   }
 
-  public static contact searchForContact(){
+  public static Contact searchForContact(){
     lineInput.nextLine();
-    Iterator<contact> contactsIterator; 
-    contactsIterator = contacts.iterator();
+    Iterator<Contact> ContactsIterator; 
+    ContactsIterator = Contacts.iterator();
   
-    System.out.print("Please enter the last name of the contact you would like to search for: ");
+    System.out.print("Please enter the last name of the Contact you would like to search for: ");
     String desiredLast = lineInput.nextLine();
 
-    System.out.print("Please enter the first name of the contact you would like to search for: ");
+    System.out.print("Please enter the first name of the Contact you would like to search for: ");
     String desiredFirst = lineInput.nextLine();
     
-    contact current;
-    while(contactsIterator.hasNext()){
-      current = contactsIterator.next();
+    Contact current;
+    while(ContactsIterator.hasNext()){
+      current = ContactsIterator.next();
       if (desiredLast.equalsIgnoreCase(current.getLastName())) {
         if(desiredFirst.equalsIgnoreCase(current.getFirstName())){
           return current;
@@ -116,7 +116,7 @@ public class userInterface{
       }
     }
 
-   System.out.println("No contact found, would you like to search again? (y/n)");
+   System.out.println("No Contact found, would you like to search again? (y/n)");
    
    char userPrompt = lineInput.nextLine().charAt(0);
 
