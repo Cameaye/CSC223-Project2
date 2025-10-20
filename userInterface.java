@@ -28,14 +28,15 @@ public class userInterface{
         case 1:
           addContact();
           break;
-
-        case 5:
-          printContacts();
+        case 3:
+          removeContact();
           break;
-
         case 4:
           Contact userRequested = searchForContact();
           if(userRequested != null) System.out.println(userRequested.toString());
+          break;
+        case 5:
+          printContacts();
           break;
         default:
           System.out.println("Invalid choice, please enter a valid option");
@@ -100,10 +101,10 @@ public class userInterface{
     Iterator<Contact> ContactsIterator; 
     ContactsIterator = Contacts.iterator();
   
-    System.out.print("Please enter the last name of the Contact you would like to search for: ");
+    System.out.print("Please enter the last name of the Contact: ");
     String desiredLast = lineInput.nextLine();
 
-    System.out.print("Please enter the first name of the Contact you would like to search for: ");
+    System.out.print("Please enter the first name of the Contact: ");
     String desiredFirst = lineInput.nextLine();
     
     Contact current;
@@ -125,6 +126,17 @@ public class userInterface{
     }
    else return searchForContact();
 
+  }
+
+
+  public static void removeContact(){
+    Contact requestedDeletion = searchForContact();
+
+    if(requestedDeletion != null){
+      Contacts.remove(Contacts.indexOf(requestedDeletion));
+      System.out.println("Contact " + requestedDeletion.getFirstName() + " " + requestedDeletion.getLastName() + " has been deleted!!");
+    }
+    else System.out.println("Error: No Contacts deleted");
   }
 }
 
